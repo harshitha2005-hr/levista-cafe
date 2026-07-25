@@ -38,11 +38,8 @@ body {
     cursor:pointer;
     font-size:16px;
 }
-#menuPage {
-    display:none;
-}
-.cart-page{
-    display:none;
+#menu, #cartPage {
+    display: none;
 }
 
 /* HEADER */
@@ -705,49 +702,68 @@ Add to Cart 🛒
 
 let tableNumber = "";
 
-<script>
-let tableNumber = "";
-
 window.onload = function(){
-localStorage.removeItem("cart");
 
+    // ❌ REMOVE THIS (it deletes cart every refresh)
+    // localStorage.removeItem("cart");
+
+    // ✅ Get table from URL
     let urlParams = new URLSearchParams(window.location.search);
-
     tableNumber = urlParams.get("table");
 
-    if(tableNumber){
+    // ✅ Get user from localStorage
+    let name = localStorage.getItem("username");
+    let storedTable = localStorage.getItem("tableNo");
 
-        document.getElementById("tableInfo").innerHTML =
-        "🪑 Table Number: " + tableNumber;
+    // ✅ If login already done
+    if(name && storedTable){
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("menu").style.display = "block";
 
+        document.getElementById("tableInfo").innerText =
+            "👤 " + name + " | 🪑 Table No: " + storedTable;
     }
-    else {
-
+    else if(tableNumber){
+        // QR scanned but not logged in yet
         document.getElementById("tableInfo").innerHTML =
-"🪑 Please scan the QR code on your table";
-
+            "🪑 Table Number: " + tableNumber;
     }
-let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    else{
+        document.getElementById("tableInfo").innerHTML =
+            "🪑 Please scan the QR code on your table";
+    }
 
-document.getElementById("cartCount").innerHTML = savedCart.length;
-}
+    // ✅ Load cart
+    let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerHTML = savedCart.length;
+};
 
-function login(){
-
+function login() {
     let name = document.getElementById("username").value;
     let phone = document.getElementById("phone").value;
 
-    if(name === "" || phone === ""){
-        alert("Please enter your name and phone number");
+    if(name === "" || phone === "") {
+        alert("Please enter details");
         return;
     }
 
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("menuPage").style.display = "block";
+    // Get table number from URL
+    let params = new URLSearchParams(window.location.search);
+    let table = params.get("table") || "1";
 
-    alert(
-"Welcome " + name + " ☕\nYour order is from Table " + tableNumber
-);
+    // Store data
+    localStorage.setItem("username", name);
+    localStorage.setItem("tableNo", table);
+
+    // Hide login
+    document.getElementById("loginPage").style.display = "none";
+
+    // Show menu
+    document.getElementById("menu").style.display = "block";
+
+    // Show table info
+    document.getElementById("tableInfo").innerText =
+        "👤 " + name + " | 🪑 Table No: " + table;
 }
 
 
@@ -822,8 +838,6 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function addToCart(itemName, price){
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
     cart.push({
         name: itemName,
         price: price
@@ -836,6 +850,23 @@ function addToCart(itemName, price){
     alert(itemName + " added to cart 🛒");
 }
 
+function displayCartItems(){
+
+    let cartItemsDiv = document.getElementById("cartItems");
+    let cartTotalDiv = document.getElementById("cartTotal");
+
+    cartItemsDiv.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        cartItemsDiv.innerHTML += `<p>${item.name} - ₹${item.price}</p>`;
+        total += item.price;
+    });
+
+    cartTotalDiv.innerHTML = "Total: ₹" + total;
+}
+
 function showCart() {
     // hide menu or main content
     document.getElementById("menu").style.display = "none";
@@ -846,11 +877,8 @@ function showCart() {
     displayCartItems(); // make sure this function exists
 }
 function backToMenu(){
-
     document.getElementById("cartPage").style.display="none";
-
-    document.getElementById("menuPage").style.display="block";
-
+    document.getElementById("menu").style.display="block";
 }
 
 
@@ -866,7 +894,7 @@ function placeOrder(){
 
     let order = {
 
-        customer: document.getElementById("username").value,
+        customer: localStorage.getItem("username"),
 
         table: tableNumber ? tableNumber : "Not Selected",
 
@@ -893,6 +921,9 @@ localStorage.removeItem("cart");
     cart=[];
 
     document.getElementById("cartCount").innerHTML=0;
+
+ document.getElementById("cartItems").innerHTML = "";
+    document.getElementById("cartTotal").innerHTML = "";
 
 
     backToMenu();
