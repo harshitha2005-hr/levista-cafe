@@ -704,48 +704,41 @@ let tableNumber = "";
 
 window.onload = function(){
 
-    // 🔥 ADD THIS BLOCK HERE (TOP MOST)
     let params = new URLSearchParams(window.location.search);
     let newTable = params.get("table");
 
     let storedTable = localStorage.getItem("tableNo");
 
-    // 🔥 if table changed → reset everything
+    // 🔥 RESET if table changed
     if(newTable && storedTable && newTable !== storedTable){
         localStorage.clear();
     }
 
-    // ⬇️ YOUR EXISTING CODE CONTINUES
-    let urlParams = new URLSearchParams(window.location.search);
-    tableNumber = urlParams.get("table");
-
     let name = localStorage.getItem("username");
-    let storedTableAgain = localStorage.getItem("tableNo");
+    let tableNumber = localStorage.getItem("tableNo") || newTable;
 
-    if(!name){
-        localStorage.removeItem("cart");
-    }
-
-    if(name && storedTableAgain){
+    // 👉 If logged in
+    if(name && tableNumber){
         document.getElementById("loginPage").style.display = "none";
         document.getElementById("menu").style.display = "block";
 
         document.getElementById("tableInfo").innerText =
-            "👤 " + name + " | 🪑 Table No: " + storedTableAgain;
-    } else {
+            "👤 " + name + " | 🪑 Table No: " + tableNumber;
+    }
+    else{
         document.getElementById("menu").style.display = "none";
         document.getElementById("loginPage").style.display = "block";
 
-        if(tableNumber){
+        if(newTable){
             document.getElementById("tableInfo").innerText =
-                "🪑 Table Number: " + tableNumber;
+                "🪑 Table Number: " + newTable;
         }
     }
 
+    // ✅ Load cart properly
     let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     document.getElementById("cartCount").innerText = savedCart.length;
 };
-
 function login() {
     let name = document.getElementById("username").value;
     let phone = document.getElementById("phone").value;
@@ -755,23 +748,26 @@ function login() {
         return;
     }
 
-    // ✅ GET TABLE
     let params = new URLSearchParams(window.location.search);
     let table = params.get("table") || "1";
 
-    // 🔥 ADD IT HERE (VERY IMPORTANT)
+    // 🔥 CLEAR STORAGE
     localStorage.removeItem("cart");
 
-    // ✅ STORE NEW USER
+    // 🔥 ALSO RESET MEMORY CART (THIS WAS MISSING)
+    cart = [];
+
     localStorage.setItem("username", name);
     localStorage.setItem("tableNo", table);
 
-    // UI changes
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("menu").style.display = "block";
 
     document.getElementById("tableInfo").innerText =
         "👤 " + name + " | 🪑 Table No: " + table;
+
+    // 🔥 RESET CART COUNT UI
+    document.getElementById("cartCount").innerText = 0;
 }
 
 
