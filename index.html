@@ -704,28 +704,35 @@ let tableNumber = "";
 
 window.onload = function(){
 
+    // 🔥 ADD THIS BLOCK HERE (TOP MOST)
+    let params = new URLSearchParams(window.location.search);
+    let newTable = params.get("table");
+
+    let storedTable = localStorage.getItem("tableNo");
+
+    // 🔥 if table changed → reset everything
+    if(newTable && storedTable && newTable !== storedTable){
+        localStorage.clear();
+    }
+
+    // ⬇️ YOUR EXISTING CODE CONTINUES
     let urlParams = new URLSearchParams(window.location.search);
     tableNumber = urlParams.get("table");
 
     let name = localStorage.getItem("username");
-    let storedTable = localStorage.getItem("tableNo");
+    let storedTableAgain = localStorage.getItem("tableNo");
 
-    // 🔥 NEW USER → CLEAR OLD CART
     if(!name){
         localStorage.removeItem("cart");
     }
 
-    // ✅ IF USER LOGGED IN
-    if(name && storedTable){
+    if(name && storedTableAgain){
         document.getElementById("loginPage").style.display = "none";
         document.getElementById("menu").style.display = "block";
 
         document.getElementById("tableInfo").innerText =
-            "👤 " + name + " | 🪑 Table No: " + storedTable;
-    }
-
-    // ❗ FORCE LOGIN IF NOT LOGGED IN
-    else{
+            "👤 " + name + " | 🪑 Table No: " + storedTableAgain;
+    } else {
         document.getElementById("menu").style.display = "none";
         document.getElementById("loginPage").style.display = "block";
 
@@ -735,13 +742,11 @@ window.onload = function(){
         }
     }
 
-    // ✅ LOAD CART
     let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     document.getElementById("cartCount").innerText = savedCart.length;
 };
 
 function login() {
-
     let name = document.getElementById("username").value;
     let phone = document.getElementById("phone").value;
 
@@ -750,15 +755,23 @@ function login() {
         return;
     }
 
+    // ✅ GET TABLE
     let params = new URLSearchParams(window.location.search);
     let table = params.get("table") || "1";
 
+    // 🔥 ADD IT HERE (VERY IMPORTANT)
+    localStorage.removeItem("cart");
+
+    // ✅ STORE NEW USER
     localStorage.setItem("username", name);
     localStorage.setItem("tableNo", table);
 
-    localStorage.removeItem("cart"); // 🔥 reset cart for new user
+    // UI changes
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("menu").style.display = "block";
 
-    location.reload(); // 🔥 reload page (very important)
+    document.getElementById("tableInfo").innerText =
+        "👤 " + name + " | 🪑 Table No: " + table;
 }
 
 
@@ -847,7 +860,7 @@ function addToCart(itemName, price){
 
 function displayCartItems(){
 
-    // 🔥 ALWAYS get fresh cart from localStorage
+    // ✅ ALWAYS get latest cart from storage
     cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     let cartItemsDiv = document.getElementById("cartItems");
@@ -871,7 +884,7 @@ function showCart() {
 
     displayCartItems(); // ✅ MUST BE HERE
 }
-function backToMenu(){
+function goBack(){
     document.getElementById("cartPage").style.display="none";
     document.getElementById("menu").style.display="block";
 }
@@ -891,7 +904,7 @@ function placeOrder(){
 
         customer: localStorage.getItem("username"),
 
-        table: tableNumber ? tableNumber : "Not Selected",
+        table: localStorage.getItem("tableNo"),
 
         items: cart
 
@@ -921,7 +934,7 @@ localStorage.removeItem("cart");
     document.getElementById("cartTotal").innerHTML = "";
 
 
-    backToMenu();
+    goBack();
 
 }
 </script>
