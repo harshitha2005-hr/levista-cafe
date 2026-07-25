@@ -186,9 +186,9 @@ body {
 }
 
 .items.show {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
 }
 
 .item {
@@ -237,6 +237,29 @@ body {
 .items.show {
     display: grid;
 }
+
+@media(max-width:600px){
+
+.items.show{
+    grid-template-columns:1fr;
+}
+
+.item{
+    width:100%;
+}
+
+.item img{
+    width:100px;
+    height:100px;
+}
+
+.item-info h4,
+.price,
+.item button{
+    display:block;
+}
+
+}
 </style>
 
 </head>
@@ -283,7 +306,7 @@ body {
 <div id="boba" class="items">
 
 <div class="item">
-<img src="mango-bubble-tea.jpg">
+<img src="mango_bubble_tea.jpg">
 <div class="item-info"><h4>Fruit Boba Mango</h4><div class="price">₹298</div>
 <button onclick="addToCart('Fruit Boba Mango',298)">
 Add to Cart 🛒
@@ -291,7 +314,7 @@ Add to Cart 🛒
 </div>
 
 <div class="item">
-<img src="LycheeBubbleTea.jpg">
+<img src="lycheebubbletea.jpg">
 <div class="item-info"><h4>Fruit Boba Lychee</h4><div class="price">₹298</div>
 <button onclick="addToCart('Fruit Boba Lychee',298)">
 Add to Cart 🛒
@@ -322,7 +345,7 @@ Add to Cart 🛒
 <div id="matcha" class="items">
 
 <div class="item">
-<img src="MatchaLimeFizz.jpg">
+<img src="matchalimefizz.jpg">
 <div class="item-info"><h4>Matcha Lime Fizz</h4><div class="price">₹289</div>
 <button onclick="addToCart('Matcha Lime Fizz',289)">
 Add to Cart 🛒
@@ -344,11 +367,11 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('coffee')">☕ Coffees</div>
 <div id="coffee" class="items">
 
-<div class="item"><img src="Cappuccino.jpeg"><div class="item-info"><h4>Cappuccino</h4><div class="price">₹220</div>
+<div class="item"><img src="cappuccino.jpeg"><div class="item-info"><h4>Cappuccino</h4><div class="price">₹220</div>
 <button onclick="addToCart('Cappuccino',220)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="VanillaCappuccino.jpeg"><div class="item-info"><h4>Vanilla Cappuccino</h4><div class="price">₹249</div>
+<div class="item"><img src="vanillacappuccino.jpeg"><div class="item-info"><h4>Vanilla Cappuccino</h4><div class="price">₹249</div>
 <button onclick="addToCart('Vanilla Cappuccino',249)">
 Add to Cart 🛒
 </button></div></div>
@@ -356,29 +379,29 @@ Add to Cart 🛒
 <button onclick="addToCart('Latte',230)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="FlatWhite.jpeg"><div class="item-info"><h4>Flat White</h4><div class="price">₹230</div>
+<div class="item"><img src="flatwhite.jpeg"><div class="item-info"><h4>Flat White</h4><div class="price">₹230</div>
 <button onclick="addToCart('Flat White',230)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Mocha.jpeg"><div class="item-info"><h4>Mocha</h4><div class="price">₹249</div>
+<div class="item"><img src="mocha.jpeg"><div class="item-info"><h4>Mocha</h4><div class="price">₹249</div>
 <button onclick="addToCart('Mocha',249)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Hot Chocolate.jpeg"><div class="item-info"><h4>Hot Chocolate</h4><div class="price">₹269</div>
+<div class="item"><img src="hot_chocolate.jpeg"><div class="item-info"><h4>Hot Chocolate</h4><div class="price">₹269</div>
 <button onclick="addToCart('Hot Chocolate',269)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Macchiato.jpeg"><div class="item-info"><h4>Macchiato</h4><div class="price">₹210</div>
+<div class="item"><img src="macchiato.jpeg"><div class="item-info"><h4>Macchiato</h4><div class="price">₹210</div>
 <button onclick="addToCart('Macchiato',210)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Hazelnut Cappuccino.jpeg"><div class="item-info"><h4>Hazelnut Cappuccino</h4><div class="price">₹249</div><button onclick="addToCart('Hazelnut Cappuccino',249)">
+<div class="item"><img src="hazelnut_cappuccino.jpeg"><div class="item-info"><h4>Hazelnut Cappuccino</h4><div class="price">₹249</div><button onclick="addToCart('Hazelnut Cappuccino',249)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Espresso.jpeg"><div class="item-info"><h4>Espresso</h4><div class="price">₹180</div><button onclick="addToCart('Espresso',180)">
+<div class="item"><img src="espresso.jpeg"><div class="item-info"><h4>Espresso</h4><div class="price">₹180</div><button onclick="addToCart('Espresso',180)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Americano.jpeg"><div class="item-info"><h4>Americano</h4><div class="price">₹200</div><button onclick="addToCart('Americano',200)">
+<div class="item"><img src="americano.jpeg"><div class="item-info"><h4>Americano</h4><div class="price">₹200</div><button onclick="addToCart('Americano',200)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -389,10 +412,10 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('tea')">🍹 Tea Specials</div>
 <div id="tea" class="items">
 
-<div class="item"><img src="PeachChill.jpeg"><div class="item-info"><h4>Peach Chill</h4><div class="price">₹220</div><button onclick="addToCart('Peach Chill',220)">
+<div class="item"><img src="peachchill.jpeg"><div class="item-info"><h4>Peach Chill</h4><div class="price">₹220</div><button onclick="addToCart('Peach Chill',220)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Classic Lemon Chill.jpeg"><div class="item-info"><h4>Classic Lemon Chill</h4><div class="price">₹220</div><button onclick="addToCart('Classic Lemon Chill',220)">
+<div class="item"><img src="classic_lemon_chill.jpeg"><div class="item-info"><h4>Classic Lemon Chill</h4><div class="price">₹220</div><button onclick="addToCart('Classic Lemon Chill',220)">
 Add to Cart 🛒
 </button></div></div>
 <div class="item"><img src="tea.jpeg"><div class="item-info"><h4>Tea (All Types)</h4><div class="price">₹220</div><button onclick="addToCart('Tea (All Types)',220)">
@@ -406,10 +429,10 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('milk')">🥤 Milkshakes</div>
 <div id="milk" class="items">
 
-<div class="item"><img src="ChocolateShake.jpeg"><div class="item-info"><h4>Chocolate Shake</h4><div class="price">₹240</div><button onclick="addToCart('Chocolate Shake',240)">
+<div class="item"><img src="chocolateshake.jpeg"><div class="item-info"><h4>Chocolate Shake</h4><div class="price">₹240</div><button onclick="addToCart('Chocolate Shake',240)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="StrawberryShake.jpeg"><div class="item-info"><h4>Strawberry Shake</h4><div class="price">₹240</div><button onclick="addToCart('Strawberry Shake',240)">
+<div class="item"><img src="strawberryshake.jpeg"><div class="item-info"><h4>Strawberry Shake</h4><div class="price">₹240</div><button onclick="addToCart('Strawberry Shake',240)">
 Add to Cart 🛒
 </button></div></div>
 <div class="item"><img src="oreo.jpeg"><div class="item-info"><h4>Classic Oreo Shake</h4><div class="price">₹250</div><button onclick="addToCart('Classic Oreo Shake',250)">
@@ -431,29 +454,29 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('pasta')">🍝 Pasta</div>
 <div id="pasta" class="items">
 
-<div class="item"><img src=" Cheese Alfredo Spaghetti.jpeg"><div class="item-info"><h4>🟢 Cheese Alfredo Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Alfredo Spaghetti',229)">
+<div class="item"><img src=" cheese_alfredo_spaghetti.jpeg"><div class="item-info"><h4>🟢 Cheese Alfredo Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Alfredo Spaghetti',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Classic Spaghetti.jpeg"><div class="item-info"><h4>🟢 Classic Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Spaghetti',229)">
+<div class="item"><img src="classic_spaghetti.jpeg"><div class="item-info"><h4>🟢 Classic Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Spaghetti',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src=" Creamy Alfredo Penne.jpeg"><div class="item-info"><h4>🟢 Creamy Alfredo Penne</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Alfredo Penne',229)">
+<div class="item"><img src=" creamy_alfredo_penne.jpeg"><div class="item-info"><h4>🟢 Creamy Alfredo Penne</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Alfredo Penne',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Penne Pomodoro Veg Pasta.jpeg"><div class="item-info"><h4>🟢 Penne Pomodoro Veg Pasta</h4><div class="price">₹229</div><button onclick="addToCart('Penne Pomodoro Veg Pasta',229)">
+<div class="item"><img src="penne_pomodoro_veg_pasta.jpeg"><div class="item-info"><h4>🟢 Penne Pomodoro Veg Pasta</h4><div class="price">₹229</div><button onclick="addToCart('Penne Pomodoro Veg Pasta',229)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Creamy Chicken Penne Pasta.jpeg"><div class="item-info"><h4>🔴 Creamy Chicken Penne Pasta</h4><div class="price">₹249</div><button onclick="addToCart('Creamy Chicken Penne Pasta',249)">
+<div class="item"><img src="creamy_chicken_penne_pasta.jpeg"><div class="item-info"><h4>🔴 Creamy Chicken Penne Pasta</h4><div class="price">₹249</div><button onclick="addToCart('Creamy Chicken Penne Pasta',249)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Creamy White Spaghetti Chicken Pasta.jpeg"><div class="item-info"><h4>🔴 Creamy White Spaghetti Chicken Pasta</h4><div class="price">₹249</div><button onclick="addToCart(' Creamy White Spaghetti Chicken Pasta',249)">
+<div class="item"><img src="creamy_white_spaghetti_chicken_pasta.jpeg"><div class="item-info"><h4>🔴 Creamy White Spaghetti Chicken Pasta</h4><div class="price">₹249</div><button onclick="addToCart(' Creamy White Spaghetti Chicken Pasta',249)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src=" Italian Spaghetti Rosso Chicken Pasta.jpeg"><div class="item-info"><h4>🔴 Italian Spaghetti Rosso Chicken Pasta</h4><div class="price">₹249</div><button onclick="addToCart('Italian Spaghetti Rosso Chicken Pasta',249)">
+<div class="item"><img src=" italian_spaghetti_rosso_chicken_pasta.jpeg"><div class="item-info"><h4>🔴 Italian Spaghetti Rosso Chicken Pasta</h4><div class="price">₹249</div><button onclick="addToCart('Italian Spaghetti Rosso Chicken Pasta',249)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Penne Pomodoro Chicken Pasta.jpeg"><div class="item-info"><h4>🔴 Penne Pomodoro Chicken Pasta</h4><div class="price">₹259</div><button onclick="addToCart('Penne Pomodoro Chicken Pasta',259)">
+<div class="item"><img src="penne_pomodoro_chicken_pasta.jpeg"><div class="item-info"><h4>🔴 Penne Pomodoro Chicken Pasta</h4><div class="price">₹259</div><button onclick="addToCart('Penne Pomodoro Chicken Pasta',259)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -464,39 +487,39 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('rice')">🍚 Rice Bowls & Mezze</div>
 <div id="rice" class="items">
 
-<div class="item"><img src="Levista Mezze Platter.jpeg"><div class="item-info"><h4>🟢 Levista Mezze Platter</h4><div class="price">₹299</div><button onclick="addToCart('Levista Mezze Platter',299)">
+<div class="item"><img src="levista_mezze_platter.jpeg"><div class="item-info"><h4>🟢 Levista Mezze Platter</h4><div class="price">₹299</div><button onclick="addToCart('Levista Mezze Platter',299)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Thai Curry Bowl (Veg).jpeg"><div class="item-info"><h4>🟢 Thai Curry Bowl (Veg)</h4><div class="price">₹299</div><button onclick="addToCart('Thai Curry Bowl (Veg)',299)">
+<div class="item"><img src="thai_curry_bowl_(veg).jpeg"><div class="item-info"><h4>🟢 Thai Curry Bowl (Veg)</h4><div class="price">₹299</div><button onclick="addToCart('Thai Curry Bowl (Veg)',299)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Paneer Manchurian Rice.jpeg"><div class="item-info"><h4>🟢 Paneer Manchurian Rice</h4><div class="price">₹199</div><button onclick="addToCart('Paneer Manchurian Rice',199)">
+<div class="item"><img src="paneer_manchurian_rice.jpeg"><div class="item-info"><h4>🟢 Paneer Manchurian Rice</h4><div class="price">₹199</div><button onclick="addToCart('Paneer Manchurian Rice',199)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Mexican Rice.jpeg"><div class="item-info"><h4>🟢 Mexican Rice</h4><div class="price">₹199</div><button onclick="addToCart('Mexican Rice',199)">
+<div class="item"><img src="mexican_rice.jpeg"><div class="item-info"><h4>🟢 Mexican Rice</h4><div class="price">₹199</div><button onclick="addToCart('Mexican Rice',199)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Chilli Cheese Garlic Rice.jpeg"><div class="item-info"><h4>🟢 Chilli Cheese Garlic Rice</h4><div class="price">₹129</div><button onclick="addToCart('Chilli Cheese Garlic Rice',129)">
+<div class="item"><img src="chilli_cheese_garlic_rice.jpeg"><div class="item-info"><h4>🟢 Chilli Cheese Garlic Rice</h4><div class="price">₹129</div><button onclick="addToCart('Chilli Cheese Garlic Rice',129)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Chilli Cheese Spinach Garlic Rice.jpeg"><div class="item-info"><h4>🟢 Chilli Cheese Spinach Garlic Rice</h4><div class="price">₹129</div><button onclick="addToCart('Chilli Cheese Spinach Garlic Rice',129)">
-Add to Cart 🛒
-</button></div></div>
-
-<div class="item"><img src="Korean Manchurian Chicken Rice.jpeg"><div class="item-info"><h4>🔴 Korean Manchurian Chicken Rice</h4><div class="price">₹229</div><button onclick="addToCart('Korean Manchurian Chicken Rice',229)">
-Add to Cart 🛒
-</button></div></div>
-<div class="item"><img src="Chilli Cheese Chicken Garlic Rice.jpeg"><div class="item-info"><h4>🔴 Chilli Cheese Chicken Garlic Rice</h4><div class="price">₹229</div><button onclick="addToCart('Chilli Cheese Chicken Garlic Rice',229)">
-Add to Cart 🛒
-</button></div></div>
-<div class="item"><img src="Burnt Garlic Chicken Rice.jpeg"><div class="item-info"><h4>🔴 Burnt Garlic Chicken Rice</h4><div class="price">₹219</div><button onclick="addToCart(' Burnt Garlic Chicken Rice',219)">
-Add to Cart 🛒
-</button></div></div>
-<div class="item"><img src="Thai Curry Bowl (Chicken).jpeg"><div class="item-info"><h4>🔴 Thai Curry Bowl (Chicken)</h4><div class="price">₹325</div><button onclick="addToCart(' Thai Curry Bowl (Chicken)',325)">
+<div class="item"><img src="chilli_cheese_spinach_garlic_rice.jpeg"><div class="item-info"><h4>🟢 Chilli Cheese Spinach Garlic Rice</h4><div class="price">₹129</div><button onclick="addToCart('Chilli Cheese Spinach Garlic Rice',129)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src=" Turkish Eggs with Za'atar Labneh.jpeg"><div class="item-info"><h4>🟢 Turkish Eggs with Za'atar Labneh</h4><div class="price">₹225</div><button onclick="addToCart('Turkish Eggs with Za'atar Labneh',225)">
+<div class="item"><img src="korean_manchurian_chicken_rice.jpeg"><div class="item-info"><h4>🔴 Korean Manchurian Chicken Rice</h4><div class="price">₹229</div><button onclick="addToCart('Korean Manchurian Chicken Rice',229)">
+Add to Cart 🛒
+</button></div></div>
+<div class="item"><img src="chilli_cheese_chicken_garlic_rice.jpeg"><div class="item-info"><h4>🔴 Chilli Cheese Chicken Garlic Rice</h4><div class="price">₹229</div><button onclick="addToCart('Chilli Cheese Chicken Garlic Rice',229)">
+Add to Cart 🛒
+</button></div></div>
+<div class="item"><img src="burnt_garlic_chicken_rice.jpeg"><div class="item-info"><h4>🔴 Burnt Garlic Chicken Rice</h4><div class="price">₹219</div><button onclick="addToCart(' Burnt Garlic Chicken Rice',219)">
+Add to Cart 🛒
+</button></div></div>
+<div class="item"><img src="thai_curry_bowl_(chicken).jpeg"><div class="item-info"><h4>🔴 Thai Curry Bowl (Chicken)</h4><div class="price">₹325</div><button onclick="addToCart(' Thai Curry Bowl (Chicken)',325)">
+Add to Cart 🛒
+</button></div></div>
+
+<div class="item"><img src=" turkish_eggs_with_zaatar_labneh.jpeg"><div class="item-info"><h4>🟢 Turkish Eggs with Za'atar Labneh</h4><div class="price">₹225</div><button onclick="addToCart('Turkish Eggs with Za'atar Labneh',225)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -507,29 +530,29 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('sandwich')">🥪 Sandwiches</div>
 <div id="sandwich" class="items">
 
-<div class="item"><img src="Creamy Mushroom Grill Sandwich.jpeg"><div class="item-info"><h4>🟢 Creamy Mushroom Grill Sandwich</h4><div class="price">₹229</div><button onclick="addToCart('Creamy Mushroom Grill Sandwich',229)">
+<div class="item"><img src="creamy_mushroom_grill_sandwich.jpeg"><div class="item-info"><h4>🟢 Creamy Mushroom Grill Sandwich</h4><div class="price">₹229</div><button onclick="addToCart('Creamy Mushroom Grill Sandwich',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Spinach & Corn Cheese Sandwich.jpeg"><div class="item-info"><h4>🟢 Spinach & Corn Cheese Sandwich</h4><div class="price">₹229</div><button onclick="addToCart('Spinach & Corn Cheese Sandwich',229)">
+<div class="item"><img src="spinach_and_corn_cheese_sandwich.jpeg"><div class="item-info"><h4>🟢 Spinach & Corn Cheese Sandwich</h4><div class="price">₹229</div><button onclick="addToCart('Spinach & Corn Cheese Sandwich',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Tandoori Paneer Sandwich.jpeg"><div class="item-info"><h4>🟢 Tandoori Paneer Sandwich</h4><div class="price">₹229</div><button onclick="addToCart('Tandoori Paneer Sandwich',229)">
+<div class="item"><img src="tandoori_paneer_sandwich.jpeg"><div class="item-info"><h4>🟢 Tandoori Paneer Sandwich</h4><div class="price">₹229</div><button onclick="addToCart('Tandoori Paneer Sandwich',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Grill Mushroom Sourdough.jpeg"><div class="item-info"><h4>🟢 Grill Mushroom Sourdough</h4><div class="price">₹229</div><button onclick="addToCart('Grill Mushroom Sourdough',229)">
+<div class="item"><img src="grill_mushroom_sourdough.jpeg"><div class="item-info"><h4>🟢 Grill Mushroom Sourdough</h4><div class="price">₹229</div><button onclick="addToCart('Grill Mushroom Sourdough',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Bombay Club Sandwich.jpeg"><div class="item-info"><h4>🟢 Bombay Club Sandwich</h4><div class="price">₹250</div><button onclick="addToCart('Bombay Club Sandwich',250)">
+<div class="item"><img src="bombay_club_sandwich.jpeg"><div class="item-info"><h4>🟢 Bombay Club Sandwich</h4><div class="price">₹250</div><button onclick="addToCart('Bombay Club Sandwich',250)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src=" Pepper Chicken Sandwich.jpeg"><div class="item-info"><h4>🔴 Pepper Chicken Sandwich</h4><div class="price">₹219</div><button onclick="addToCart('Pepper Chicken Sandwich',219)">
+<div class="item"><img src="pepper_chicken_sandwich.jpeg"><div class="item-info"><h4>🔴 Pepper Chicken Sandwich</h4><div class="price">₹219</div><button onclick="addToCart('Pepper Chicken Sandwich',219)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Tandoori Chicken Sandwich.jpeg"><div class="item-info"><h4>🔴 Tandoori Chicken Sandwich</h4><div class="price">₹219</div><button onclick="addToCart(' Tandoori Chicken Sandwich',219)">
+<div class="item"><img src="tandoori_chicken_sandwich.jpeg"><div class="item-info"><h4>🔴 Tandoori Chicken Sandwich</h4><div class="price">₹219</div><button onclick="addToCart(' Tandoori Chicken Sandwich',219)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Roasted Chicken Sourdough.jpeg"><div class="item-info"><h4>🔴 Roasted Chicken Sourdough</h4><div class="price">₹275</div><button onclick="addToCart(' Roasted Chicken Sourdough',275)">
+<div class="item"><img src="roasted_chicken_sourdough.jpeg"><div class="item-info"><h4>🔴 Roasted Chicken Sourdough</h4><div class="price">₹275</div><button onclick="addToCart(' Roasted Chicken Sourdough',275)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -540,13 +563,13 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('burger')">🍔 Burgers</div>
 <div id="burger" class="items">
 
-<div class="item"><img src="Classic Veggie Burger.jpeg"><div class="item-info"><h4>🟢 Classic Veggie Burger</h4><div class="price">₹199</div><button onclick="addToCart('Classic Veggie Burger',199)">
+<div class="item"><img src="classic_veggie_burger.jpeg"><div class="item-info"><h4>🟢 Classic Veggie Burger</h4><div class="price">₹199</div><button onclick="addToCart('Classic Veggie Burger',199)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Crispy Chicken Burger.jpeg"><div class="item-info"><h4>🔴 Crispy Chicken Burger</h4><div class="price">₹229</div><button onclick="addToCart('Crispy Chicken Burger',229)">
+<div class="item"><img src="crispy_chicken_burger.jpeg"><div class="item-info"><h4>🔴 Crispy Chicken Burger</h4><div class="price">₹229</div><button onclick="addToCart('Crispy Chicken Burger',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src=" Grill Chicken Burger.jpeg"><div class="item-info"><h4>🔴 Grill Chicken Burger</h4><div class="price">₹219</div><button onclick="addToCart('Grill Chicken Burger',219)">
+<div class="item"><img src="grill_chicken_burger.jpeg"><div class="item-info"><h4>🔴 Grill Chicken Burger</h4><div class="price">₹219</div><button onclick="addToCart('Grill Chicken Burger',219)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -557,20 +580,20 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('salad')">🥗 Salads</div>
 <div id="salad" class="items">
 
-<div class="item"><img src="Avocado Falafel Salad.jpeg"><div class="item-info"><h4>🟢 Avocado Falafel Salad</h4><div class="price">₹225</div><button onclick="addToCart('Avocado Falafel Salad',225)">
+<div class="item"><img src="avocado_falafel_salad.jpeg"><div class="item-info"><h4>🟢 Avocado Falafel Salad</h4><div class="price">₹225</div><button onclick="addToCart('Avocado Falafel Salad',225)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Caesar Salad (Tofu).jpeg"><div class="item-info"><h4>🟢 Caesar Salad (Tofu)</h4><div class="price">₹275</div><button onclick="addToCart('Caesar Salad (Tofu)',275)">
+<div class="item"><img src="caesar_salad_(tofu).jpeg"><div class="item-info"><h4>🟢 Caesar Salad (Tofu)</h4><div class="price">₹275</div><button onclick="addToCart('Caesar Salad (Tofu)',275)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Protein Peanut Salad.jpeg"><div class="item-info"><h4>🟢 Protein Peanut Salad</h4><div class="price">₹169</div><button onclick="addToCart('Protein Peanut Salad',169)">
+<div class="item"><img src="protein_peanut_salad.jpeg"><div class="item-info"><h4>🟢 Protein Peanut Salad</h4><div class="price">₹169</div><button onclick="addToCart('Protein Peanut Salad',169)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="Protein Chickpea Salad.jpeg"><div class="item-info"><h4>🟢 Protein Chickpea Salad</h4><div class="price">₹169</div><button onclick="addToCart('Protein Chickpea Salad',169)">
+<div class="item"><img src="protein_chickpea_salad.jpeg"><div class="item-info"><h4>🟢 Protein Chickpea Salad</h4><div class="price">₹169</div><button onclick="addToCart('Protein Chickpea Salad',169)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src=" Caesar Salad (Chicken).jpeg"><div class="item-info"><h4>🔴 Caesar Salad (Chicken)</h4><div class="price">₹295</div><button onclick="addToCart(' Caesar Salad (Chicken)',295)">
+<div class="item"><img src="caesar_salad_(chicken).jpeg"><div class="item-info"><h4>🔴 Caesar Salad (Chicken)</h4><div class="price">₹295</div><button onclick="addToCart(' Caesar Salad (Chicken)',295)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -581,28 +604,28 @@ Add to Cart 🛒
 <div id="toast" class="items">
 
 <div class="item">
-<img src="Avocado Toast on Sourdough.jpeg">
+<img src="avocado_toast_on_sourdough.jpeg">
 <div class="item-info"><h4>🟢 Avocado Toast on Sourdough</h4><div class="price">₹249</div><button onclick="addToCart(' Avocado Toast on Sourdough',249)">
 Add to Cart 🛒
 </button></div>
 </div>
 
 <div class="item">
-<img src="Chimichurri Chilli Cheese Toast.jpeg">
+<img src="chimichurri_chilli_cheese_toast.jpeg">
 <div class="item-info"><h4>🟢 Chimichurri Chilli Cheese Toast</h4><div class="price">₹249</div><button onclick="addToCart('Chimichurri Chilli Cheese Toast',249)">
 Add to Cart 🛒
 </button></div>
 </div>
 
 <div class="item">
-<img src="Sun-Dried Tomato & Hummus Toast.jpeg">
+<img src="sun_dried_tomato_and_hummus_toast.jpeg">
 <div class="item-info"><h4>🟢 Sun-Dried Tomato & Hummus Toast</h4><div class="price">₹249</div><button onclick="addToCart('Sun-Dried Tomato & Hummus Toast',249)">
 Add to Cart 🛒
 </button></div>
 </div>
 
 <div class="item">
-<img src="Avocado Egg Smash on Sourdough.jpeg">
+<img src="avocado_egg_smash_on_sourdough.jpeg">
 <div class="item-info"><h4>🔴 Avocado Egg Smash on Sourdough</h4><div class="price">₹249</div><button onclick="addToCart('Avocado Egg Smash on Sourdough',249)">
 Add to Cart 🛒
 </button></div>
@@ -616,28 +639,28 @@ Add to Cart 🛒
 <div id="panini" class="items">
 
 <div class="item">
-<img src="Grilled Mushroom, Caramelized Onion & Feta Panini.jpeg">
+<img src="grilled_mushroom_caramelized_onion_and_feta_panini.jpeg">
 <div class="item-info"><h4>🟢 Grilled Mushroom, Caramelized Onion & Feta Panini</h4><div class="price">₹249</div><button onclick="addToCart('Grilled Mushroom, Caramelized Onion & Feta Panini',249)">
 Add to Cart 🛒
 </button></div>
 </div>
 
 <div class="item">
-<img src="Sun-Dried Tomato & Spinach Panini.jpeg">
+<img src="sun_dried_tomato_and_spinach_panini.jpeg">
 <div class="item-info"><h4>🟢 Sun-Dried Tomato & Spinach Panini</h4><div class="price">₹249</div><button onclick="addToCart('Sun-Dried Tomato & Spinach Panini',249)">
 Add to Cart 🛒
 </button></div>
 </div>
 
 <div class="item">
-<img src="Smoked Chicken Chimichurri Cheddar Panini.jpeg">
+<img src="smoked_chicken_chimichurri_cheddar_panini.jpeg">
 <div class="item-info"><h4>🔴 Smoked Chicken Chimichurri Cheddar Panini</h4><div class="price">₹275</div><button onclick="addToCart('Smoked Chicken Chimichurri Cheddar Panini',275)">
 Add to Cart 🛒
 </button></div>
 </div>
 
 <div class="item">
-<img src="Roasted Chicken Panini.jpeg">
+<img src="roasted_chicken_panini.jpeg">
 <div class="item-info"><h4>🔴 Roasted Chicken Panini</h4><div class="price">₹275</div><button onclick="addToCart('Roasted Chicken Panini',275)">
 Add to Cart 🛒
 </button></div>
@@ -655,51 +678,51 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('bakery')">🧁 Desserts & Bakery</div>
 <div id="bakery" class="items">
 
-<div class="item"><img src=" Black Forest Pastry.jpeg"><div class="item-info"><h4>🟢 Black Forest Pastry</h4><div class="price">₹220</div><button onclick="addToCart('Black Forest Pastry',220)">
+<div class="item"><img src="black_forest_pastry.jpeg"><div class="item-info"><h4>🟢 Black Forest Pastry</h4><div class="price">₹220</div><button onclick="addToCart('Black Forest Pastry',220)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Red Velvet Pastry.jpeg"><div class="item-info"><h4>🟢 Red Velvet Pastry</h4><div class="price">₹220</div><button onclick="addToCart('Red Velvet Pastry',220)">
+<div class="item"><img src="red_velvet_pastry.jpeg"><div class="item-info"><h4>🟢 Red Velvet Pastry</h4><div class="price">₹220</div><button onclick="addToCart('Red Velvet Pastry',220)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Banana Walnut Tea Cake.jpeg"><div class="item-info"><h4>🟢 Banana Walnut Tea Cake</h4><div class="price">₹150</div><button onclick="addToCart('Banana Walnut Tea Cake',150)">
+<div class="item"><img src="banana_walnut_tea_cake.jpeg"><div class="item-info"><h4>🟢 Banana Walnut Tea Cake</h4><div class="price">₹150</div><button onclick="addToCart('Banana Walnut Tea Cake',150)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Carrot Raisin Tea Cake.jpeg"><div class="item-info"><h4>🟢 Carrot Raisin Tea Cake</h4><div class="price">₹150</div><button onclick="addToCart('Carrot Raisin Tea Cake',150)">
+<div class="item"><img src="carrot_raisin_tea_cake.jpeg"><div class="item-info"><h4>🟢 Carrot Raisin Tea Cake</h4><div class="price">₹150</div><button onclick="addToCart('Carrot Raisin Tea Cake',150)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Choco Lava Cake.jpeg"><div class="item-info"><h4>🟢 Choco Lava Cake</h4><div class="price">₹129</div><button onclick="addToCart('Choco Lava Cake',129)">
+<div class="item"><img src="choco_lava_cake.jpeg"><div class="item-info"><h4>🟢 Choco Lava Cake</h4><div class="price">₹129</div><button onclick="addToCart('Choco Lava Cake',129)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Choco Chip Muffin.jpeg"><div class="item-info"><h4>🟢 Choco Chip Muffin</h4><div class="price">₹129</div><button onclick="addToCart('Choco Chip Muffin',129)">
+<div class="item"><img src="choco_chip_muffin.jpeg"><div class="item-info"><h4>🟢 Choco Chip Muffin</h4><div class="price">₹129</div><button onclick="addToCart('Choco Chip Muffin',129)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Blueberry Muffin.jpeg"><div class="item-info"><h4>🟢 Blueberry Muffin</h4><div class="price">₹129</div><button onclick="addToCart(' Blueberry Muffin',129)">
+<div class="item"><img src="blueberry_muffin.jpeg"><div class="item-info"><h4>🟢 Blueberry Muffin</h4><div class="price">₹129</div><button onclick="addToCart(' Blueberry Muffin',129)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Date & Walnut Muffin.jpeg"><div class="item-info"><h4>🟢 Date & Walnut Muffin</h4><div class="price">₹129</div><button onclick="addToCart('Date & Walnut Muffin',129)">
+<div class="item"><img src="date_and_walnut_muffin.jpeg"><div class="item-info"><h4>🟢 Date & Walnut Muffin</h4><div class="price">₹129</div><button onclick="addToCart('Date & Walnut Muffin',129)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src=" Chocolate Fantasy.jpeg"><div class="item-info"><h4>🟢 Chocolate Fantasy</h4><div class="price">₹175</div><button onclick="addToCart('Chocolate Fantasy',175)">
+<div class="item"><img src="chocolate_fantasy.jpeg"><div class="item-info"><h4>🟢 Chocolate Fantasy</h4><div class="price">₹175</div><button onclick="addToCart('Chocolate Fantasy',175)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Butter Croissant.jpeg"><div class="item-info"><h4>🟢 Butter Croissant</h4><div class="price">₹180</div><button onclick="addToCart(' Butter Croissant',180)">
+<div class="item"><img src="butter_croissant.jpeg"><div class="item-info"><h4>🟢 Butter Croissant</h4><div class="price">₹180</div><button onclick="addToCart(' Butter Croissant',180)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Chocolate Croissant.jpeg"><div class="item-info"><h4>🟢 Chocolate Croissant</h4><div class="price">₹220</div><button onclick="addToCart('Chocolate Croissant',220)">
+<div class="item"><img src="chocolate_croissant.jpeg"><div class="item-info"><h4>🟢 Chocolate Croissant</h4><div class="price">₹220</div><button onclick="addToCart('Chocolate Croissant',220)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Brownie.jpeg"><div class="item-info"><h4>🟢 Brownie</h4><div class="price">₹160</div><button onclick="addToCart('Brownie',160)">
+<div class="item"><img src="brownie.jpeg"><div class="item-info"><h4>🟢 Brownie</h4><div class="price">₹160</div><button onclick="addToCart('Brownie',160)">
 Add to Cart 🛒
 </button></div></div>
 </div>
@@ -718,7 +741,7 @@ Add to Cart 🛒
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Fruit Bliss Sundae.jpeg"><div class="item-info"><h4>🟢 Fruit Bliss Sundae</h4><div class="price">₹249</div><button onclick="addToCart('Fruit Bliss Sundae',249)">
+<div class="item"><img src="fruit_bliss_sundae.jpeg"><div class="item-info"><h4>🟢 Fruit Bliss Sundae</h4><div class="price">₹249</div><button onclick="addToCart('Fruit Bliss Sundae',249)">
 Add to Cart 🛒
 </button></div></div>
 
@@ -726,11 +749,11 @@ Add to Cart 🛒
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src=" Sizzling Brownie.jpeg"><div class="item-info"><h4>🟢 Sizzling Brownie</h4><div class="price">₹225</div><button onclick="addToCart('Sizzling Brownie',225)">
+<div class="item"><img src="sizzling_brownie.jpeg"><div class="item-info"><h4>🟢 Sizzling Brownie</h4><div class="price">₹225</div><button onclick="addToCart('Sizzling Brownie',225)">
 Add to Cart 🛒
 </button></div></div>
 
-<div class="item"><img src="Affogato.jpeg"><div class="item-info"><h4>🟢 Affogato</h4><div class="price">₹249</div><button onclick="addToCart('Affogato',249)">
+<div class="item"><img src="affogato.jpeg"><div class="item-info"><h4>🟢 Affogato</h4><div class="price">₹249</div><button onclick="addToCart('Affogato',249)">
 Add to Cart 🛒
 </button></div></div>
 </div>
