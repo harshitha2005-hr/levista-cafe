@@ -704,20 +704,35 @@ let tableNumber = "";
 
 window.onload = function(){
 
+    // 🔥 STEP 1: CHECK TABLE FROM URL
     let params = new URLSearchParams(window.location.search);
     let newTable = params.get("table");
 
+    // 🚫 NO TABLE → BLOCK ACCESS
+    if(!newTable){
+        localStorage.clear();
+
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+
+        document.getElementById("tableInfo").innerText =
+            "🪑 Please scan the QR code on your table";
+
+        return;
+    }
+
+    // 🔥 STEP 2: CHECK IF TABLE CHANGED
     let storedTable = localStorage.getItem("tableNo");
 
-    // 🔥 RESET if table changed
-    if(newTable && storedTable && newTable !== storedTable){
+    if(storedTable && newTable !== storedTable){
         localStorage.clear();
     }
 
+    // 🔥 STEP 3: GET USER
     let name = localStorage.getItem("username");
     let tableNumber = localStorage.getItem("tableNo") || newTable;
 
-    // 👉 If logged in
+    // ✅ IF LOGGED IN
     if(name && tableNumber){
         document.getElementById("loginPage").style.display = "none";
         document.getElementById("menu").style.display = "block";
@@ -729,13 +744,11 @@ window.onload = function(){
         document.getElementById("menu").style.display = "none";
         document.getElementById("loginPage").style.display = "block";
 
-        if(newTable){
-            document.getElementById("tableInfo").innerText =
-                "🪑 Table Number: " + newTable;
-        }
+        document.getElementById("tableInfo").innerText =
+            "🪑 Table Number: " + newTable;
     }
 
-    // ✅ Load cart properly
+    // 🔥 STEP 4: LOAD CART
     let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     document.getElementById("cartCount").innerText = savedCart.length;
 };
