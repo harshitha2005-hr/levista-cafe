@@ -722,6 +722,7 @@ Add to Cart 🛒
 </div>
 
 <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let tableNumber = "";
 
@@ -874,7 +875,7 @@ function searchFood() {
         }
     }
 }
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
 function addToCart(name, price) {
 
@@ -965,6 +966,8 @@ function increaseQty(index){
 
     cart[index].quantity++;
 
+    localStorage.setItem("cart", JSON.stringify(cart));
+
     updateCartCount();
     showCart();
 
@@ -984,6 +987,8 @@ function decreaseQty(index){
         cart.splice(index,1);
 
     }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     updateCartCount();
     showCart();
