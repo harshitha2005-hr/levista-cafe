@@ -83,14 +83,35 @@ body {
     border-radius:15px;
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
-
-.cart-item {
+.cart-item{
+    background:white;
     display:flex;
     justify-content:space-between;
-    padding:12px;
+    align-items:center;
+    padding:15px;
+    margin:10px;
+    border-radius:10px;
+    box-shadow:0 0 10px #ddd;
     border-bottom:1px solid #ddd;
 }
 
+
+.cart-item button{
+    width:35px;
+    height:35px;
+    font-size:20px;
+    border:none;
+    border-radius:50%;
+    background:#6b3e26;
+    color:white;
+    cursor:pointer;
+}
+
+
+.cart-item span{
+    margin:0 15px;
+    font-size:20px;
+}
 .cart-page button {
     background:#6b3e26;
     color:white;
@@ -855,18 +876,25 @@ function searchFood() {
 }
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(itemName, price){
+function addToCart(name, price) {
 
-    cart.push({
-        name: itemName,
-        price: price
-    });
+    let existingItem = cart.find(item => item.name === name);
+
+    if(existingItem){
+        existingItem.quantity++;
+    }
+    else{
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    document.getElementById("cartCount").innerHTML = cart.length;
-
-    alert(itemName + " added to cart 🛒");
+    updateCartCount();
+    showCart();
 }
 
 function displayCartItems(){
@@ -889,11 +917,91 @@ function displayCartItems(){
     cartTotalDiv.innerHTML = "Total: ₹" + total;
 }
 
-function showCart() {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("cartPage").style.display = "block";
+function showCart(){
 
-    displayCartItems(); // ✅ MUST BE HERE
+    document.getElementById("cartPage").style.display="block";
+
+    let cartItems = document.getElementById("cartItems");
+
+    cartItems.innerHTML="";
+
+    let total = 0;
+
+    cart.forEach((item,index)=>{
+
+        total += item.price * item.quantity;
+
+        cartItems.innerHTML += `
+
+        <div class="cart-item">
+
+            <h3>${item.name}</h3>
+
+            <p>₹${item.price}</p>
+
+            <button onclick="decreaseQty(${index})">-</button>
+
+            <span>${item.quantity}</span>
+
+            <button onclick="increaseQty(${index})">+</button>
+
+            <p>
+            Subtotal: ₹${item.price * item.quantity}
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    cartItems.innerHTML += `
+        <h2>Total: ₹${total}</h2>
+    `;
+}
+
+function increaseQty(index){
+
+    cart[index].quantity++;
+
+    updateCartCount();
+    showCart();
+
+}
+
+
+
+function decreaseQty(index){
+
+    if(cart[index].quantity > 1){
+
+        cart[index].quantity--;
+
+    }
+    else{
+
+        cart.splice(index,1);
+
+    }
+
+    updateCartCount();
+    showCart();
+
+}
+
+
+
+function updateCartCount(){
+
+    let count = 0;
+
+    cart.forEach(item=>{
+        count += item.quantity;
+    });
+
+    document.getElementById("cartCount").innerHTML = count;
+
 }
 function goBack(){
     document.getElementById("cartPage").style.display="none";
