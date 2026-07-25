@@ -42,6 +42,10 @@ body {
     display: none;
 }
 
+#paymentPage{
+    display:none;
+}
+
 /* HEADER */
 .header {
     background: linear-gradient(135deg, #6b3e26, #3b1e1e);
@@ -121,6 +125,24 @@ body {
     cursor:pointer;
     margin:10px;
 }
+.payment-page{
+    background:white;
+    margin:20px;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.payment-box button{
+    background:#6b3e26;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    margin:10px;
+    border-radius:20px;
+    cursor:pointer;
+}
 /* CATEGORY */
 .category {
     background: white;
@@ -189,7 +211,19 @@ body {
     padding: 10px;
     flex: 1;
 }
+.item button{
+    background:#6b3e26;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:8px;
+}
 
+.item button:hover{
+    background:#3b1e1e;
+}
 .price {
     color: green;
     font-weight: bold;
@@ -720,6 +754,24 @@ Add to Cart 🛒
 
 
 </div>
+<!-- PAYMENT PAGE -->
+<div id="paymentPage" class="payment-page">
+
+    <h2>💳 Payment</h2>
+
+    <h3 id="paymentAmount"></h3>
+
+    <div class="payment-box">
+
+        <h3>Choose Payment Method</h3>
+
+        <button onclick="payUPI()">📱 UPI Payment</button>
+
+        <button onclick="payCash()">💵 Cash Payment</button>
+
+    </div>
+
+</div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -773,9 +825,18 @@ window.onload = function(){
     }
 
     // 🔥 STEP 4: LOAD CART
-    let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cartCount").innerText = savedCart.length;
+let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let count = 0;
+
+savedCart.forEach(item => {
+    count += item.quantity;
+});
+
+document.getElementById("cartCount").innerText = count;
 };
+
+
 function login() {
     let name = document.getElementById("username").value;
     let phone = document.getElementById("phone").value;
@@ -1019,11 +1080,50 @@ function placeOrder(){
         return;
     }
 
+    let total = 0;
+
+    cart.forEach(item=>{
+        total += item.price * item.quantity;
+    });
+
+
+    document.getElementById("cartPage").style.display="none";
+
+    document.getElementById("paymentPage").style.display="block";
+
+
+    document.getElementById("paymentAmount").innerHTML =
+    "Amount to Pay: ₹" + total;
+
+}
+function payUPI(){
+
+    alert("UPI Payment Successful 📱✅");
+
+    completeOrder();
+
+}
+
+
+function payCash(){
+
+    alert("Cash Payment Selected 💵");
+
+    completeOrder();
+
+}
+
+
+
+function completeOrder(){
+
     let order = {
         customer: localStorage.getItem("username"),
         table: localStorage.getItem("tableNo"),
-        items: cart
+        items: cart,
+        status:"Paid"
     };
+
 
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
@@ -1031,18 +1131,22 @@ function placeOrder(){
 
     localStorage.setItem("orders", JSON.stringify(orders));
 
+
     alert("Order sent to kitchen 👨‍🍳☕");
 
-    // 🔥 CLEAR CART PROPERLY
+
     localStorage.removeItem("cart");
-    cart = [];
 
-    // 🔥 UPDATE UI
-    document.getElementById("cartCount").innerText = 0;
-    document.getElementById("cartItems").innerHTML = "";
-    document.getElementById("cartTotal").innerHTML = "";
+    cart=[];
 
-    goBack();
+
+    document.getElementById("cartCount").innerText=0;
+
+
+    document.getElementById("paymentPage").style.display="none";
+
+    document.getElementById("menu").style.display="block";
+
 }
 
 </script>
