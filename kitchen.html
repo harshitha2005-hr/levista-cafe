@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Levista Kitchen Dashboard</title>
+
+<style>
+
+body{
+    font-family:'Segoe UI';
+    background:#f8f8f8;
+}
+
+h1{
+    text-align:center;
+    background:#6b3e26;
+    color:white;
+    padding:20px;
+}
+
+.order{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 3px 10px #ccc;
+}
+
+button{
+    background:green;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>👨‍🍳 Levista Kitchen Dashboard</h1>
+
+<div id="orders"></div>
+
+
+<script>
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+
+function displayOrders(){
+
+let output="";
+
+
+orders.forEach((order,index)=>{
+
+
+output += `
+
+<div class="order">
+
+<h3>🪑 Table Number: ${order.table}</h3>
+
+<p>Customer: ${order.customer}</p>
+
+<h4>Items:</h4>
+
+<ul>
+
+${order.items.map(item=>`
+
+<li>
+${item.name} - ₹${item.price}
+</li>
+
+`).join("")}
+
+</ul>
+
+
+<button onclick="completeOrder(${index})">
+Complete Order ✅
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("orders").innerHTML=output;
+
+
+}
+
+
+function completeOrder(index){
+
+orders.splice(index,1);
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+displayOrders();
+
+}
+
+setInterval(() => {
+    orders = JSON.parse(localStorage.getItem("orders")) || [];
+    displayOrders();
+}, 2000); // refresh every 2 seconds
+
+
+
+</script>
+
+
+</body>
+</html>

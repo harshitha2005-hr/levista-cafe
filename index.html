@@ -693,8 +693,10 @@ Add to Cart 🛒
     <div id="cartItems"></div>
 
     <h3 id="cartTotal"></h3>
+<button onclick="placeOrder()">Place Order 🍽️</button>
 
     <button onclick="goBack()">⬅ Back to Menu</button>
+
 
 </div>
 
@@ -897,55 +899,39 @@ function goBack(){
     document.getElementById("cartPage").style.display="none";
     document.getElementById("menu").style.display="block";
 }
-
-
 function placeOrder(){
 
-    if(cart.length==0){
-
+    if(cart.length == 0){
         alert("Your cart is empty 🛒");
         return;
-
     }
 
-
     let order = {
-
         customer: localStorage.getItem("username"),
-
         table: localStorage.getItem("tableNo"),
-
         items: cart
-
     };
-
 
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-
     orders.push(order);
 
-
-    localStorage.setItem(
-        "orders",
-        JSON.stringify(orders)
-    );
-
+    localStorage.setItem("orders", JSON.stringify(orders));
 
     alert("Order sent to kitchen 👨‍🍳☕");
-localStorage.removeItem("cart");
 
-    cart=[];
+    // 🔥 CLEAR CART PROPERLY
+    localStorage.removeItem("cart");
+    cart = [];
 
-    document.getElementById("cartCount").innerHTML=0;
-
- document.getElementById("cartItems").innerHTML = "";
+    // 🔥 UPDATE UI
+    document.getElementById("cartCount").innerText = 0;
+    document.getElementById("cartItems").innerHTML = "";
     document.getElementById("cartTotal").innerHTML = "";
 
-
     goBack();
-
 }
+
 </script>
 
 </body>
