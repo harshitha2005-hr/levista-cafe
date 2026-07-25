@@ -704,18 +704,18 @@ let tableNumber = "";
 
 window.onload = function(){
 
-    // ❌ REMOVE THIS (it deletes cart every refresh)
-    // localStorage.removeItem("cart");
-
-    // ✅ Get table from URL
     let urlParams = new URLSearchParams(window.location.search);
     tableNumber = urlParams.get("table");
 
-    // ✅ Get user from localStorage
     let name = localStorage.getItem("username");
     let storedTable = localStorage.getItem("tableNo");
 
-    // ✅ If login already done
+    // 🔥 NEW USER → CLEAR OLD CART
+    if(!name){
+        localStorage.removeItem("cart");
+    }
+
+    // ✅ IF USER LOGGED IN
     if(name && storedTable){
         document.getElementById("loginPage").style.display = "none";
         document.getElementById("menu").style.display = "block";
@@ -723,22 +723,25 @@ window.onload = function(){
         document.getElementById("tableInfo").innerText =
             "👤 " + name + " | 🪑 Table No: " + storedTable;
     }
-    else if(tableNumber){
-        // QR scanned but not logged in yet
-        document.getElementById("tableInfo").innerHTML =
-            "🪑 Table Number: " + tableNumber;
-    }
+
+    // ❗ FORCE LOGIN IF NOT LOGGED IN
     else{
-        document.getElementById("tableInfo").innerHTML =
-            "🪑 Please scan the QR code on your table";
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+
+        if(tableNumber){
+            document.getElementById("tableInfo").innerText =
+                "🪑 Table Number: " + tableNumber;
+        }
     }
 
-    // ✅ Load cart
+    // ✅ LOAD CART
     let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cartCount").innerHTML = savedCart.length;
+    document.getElementById("cartCount").innerText = savedCart.length;
 };
 
 function login() {
+
     let name = document.getElementById("username").value;
     let phone = document.getElementById("phone").value;
 
@@ -747,23 +750,15 @@ function login() {
         return;
     }
 
-    // Get table number from URL
     let params = new URLSearchParams(window.location.search);
     let table = params.get("table") || "1";
 
-    // Store data
     localStorage.setItem("username", name);
     localStorage.setItem("tableNo", table);
 
-    // Hide login
-    document.getElementById("loginPage").style.display = "none";
+    localStorage.removeItem("cart"); // 🔥 reset cart for new user
 
-    // Show menu
-    document.getElementById("menu").style.display = "block";
-
-    // Show table info
-    document.getElementById("tableInfo").innerText =
-        "👤 " + name + " | 🪑 Table No: " + table;
+    location.reload(); // 🔥 reload page (very important)
 }
 
 
@@ -852,6 +847,9 @@ function addToCart(itemName, price){
 
 function displayCartItems(){
 
+    // 🔥 ALWAYS get fresh cart from localStorage
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     let cartItemsDiv = document.getElementById("cartItems");
     let cartTotalDiv = document.getElementById("cartTotal");
 
@@ -868,13 +866,10 @@ function displayCartItems(){
 }
 
 function showCart() {
-    // hide menu or main content
     document.getElementById("menu").style.display = "none";
-
-    // show cart page
     document.getElementById("cartPage").style.display = "block";
 
-    displayCartItems(); // make sure this function exists
+    displayCartItems(); // ✅ MUST BE HERE
 }
 function backToMenu(){
     document.getElementById("cartPage").style.display="none";
