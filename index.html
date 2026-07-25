@@ -302,7 +302,7 @@ Add to Cart 🛒
 <div class="subcategory" onclick="toggle('coffee')">☕ Coffees</div>
 <div id="coffee" class="items">
 
-<div class="item"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"><div class="item-info"><h4>Cappuccino</h4><div class="price">₹220</div>
+<div class="item"><img src="Cappuccino.jpeg"><div class="item-info"><h4>Cappuccino</h4><div class="price">₹220</div>
 <button onclick="addToCart('Cappuccino',220)">
 Add to Cart 🛒
 </button></div></div>
@@ -322,7 +322,7 @@ Add to Cart 🛒
 <button onclick="addToCart('Mocha',249)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed"><div class="item-info"><h4>Hot Chocolate</h4><div class="price">₹269</div>
+<div class="item"><img src="Hot Chocolate.jpeg"><div class="item-info"><h4>Hot Chocolate</h4><div class="price">₹269</div>
 <button onclick="addToCart('Hot Chocolate',269)">
 Add to Cart 🛒
 </button></div></div>
@@ -330,7 +330,7 @@ Add to Cart 🛒
 <button onclick="addToCart('Macchiato',210)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"><div class="item-info"><h4>Hazelnut Cappuccino</h4><div class="price">₹249</div><button onclick="addToCart('Hazelnut Cappuccino',249)">
+<div class="item"><img src="Hazelnut Cappuccino.jpeg"><div class="item-info"><h4>Hazelnut Cappuccino</h4><div class="price">₹249</div><button onclick="addToCart('Hazelnut Cappuccino',249)">
 Add to Cart 🛒
 </button></div></div>
 <div class="item"><img src="Espresso.jpeg"><div class="item-info"><h4>Espresso</h4><div class="price">₹180</div><button onclick="addToCart('Espresso',180)">
@@ -350,7 +350,7 @@ Add to Cart 🛒
 <div class="item"><img src="PeachChill.jpeg"><div class="item-info"><h4>Peach Chill</h4><div class="price">₹220</div><button onclick="addToCart('Peach Chill',220)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1497534446932-c925b458314e"><div class="item-info"><h4>Classic Lemon Chill</h4><div class="price">₹220</div><button onclick="addToCart('Classic Lemon Chill',220)">
+<div class="item"><img src="Classic Lemon Chill.jpeg"><div class="item-info"><h4>Classic Lemon Chill</h4><div class="price">₹220</div><button onclick="addToCart('Classic Lemon Chill',220)">
 Add to Cart 🛒
 </button></div></div>
 <div class="item"><img src="tea.jpeg"><div class="item-info"><h4>Tea (All Types)</h4><div class="price">₹220</div><button onclick="addToCart('Tea (All Types)',220)">
@@ -392,7 +392,7 @@ Add to Cart 🛒
 <div class="item"><img src=" Cheese Alfredo Spaghetti.jpeg"><div class="item-info"><h4>🟢 Cheese Alfredo Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Alfredo Spaghetti',229)">
 Add to Cart 🛒
 </button></div></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141"><div class="item-info"><h4>🟢 Classic Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Spaghetti',229)">
+<div class="item"><img src="Classic Spaghetti.jpeg"><div class="item-info"><h4>🟢 Classic Spaghetti</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Spaghetti',229)">
 Add to Cart 🛒
 </button></div></div>
 <div class="item"><img src=" Creamy Alfredo Penne.jpeg"><div class="item-info"><h4>🟢 Creamy Alfredo Penne</h4><div class="price">₹229</div><button onclick="addToCart('Cheese Alfredo Penne',229)">
@@ -717,6 +717,9 @@ window.onload = function(){
 "🪑 Please scan the QR code on your table";
 
     }
+let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+document.getElementById("cartCount").innerHTML = savedCart.length;
 }
 
 function login(){
@@ -805,14 +808,18 @@ function searchFood() {
         }
     }
 }
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function addToCart(itemName, price){
 
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     cart.push({
-        name: itemName,
-        price: price
+        name:itemName,
+        price:price
     });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     document.getElementById("cartCount").innerHTML = cart.length;
 
@@ -821,6 +828,8 @@ function addToCart(itemName, price){
 
 
 function showCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     document.getElementById("menuPage").style.display="none";
 
