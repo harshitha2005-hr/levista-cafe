@@ -1140,41 +1140,46 @@ function payCash(){
 }
 
 
-
 function completeOrder(){
 
     let order = {
         customer: localStorage.getItem("username"),
         table: localStorage.getItem("tableNo"),
         items: cart,
-        status:"Paid"
+        status: "Paid"
     };
 
+    // 🔥 SEND TO BACKEND
+    fetch("http://localhost:5000/place-order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(order)
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert("Order sent to kitchen 👨‍🍳☕");
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
+    // (optional: you can remove localStorage later)
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
     orders.push(order);
-
     localStorage.setItem("orders", JSON.stringify(orders));
 
-
-    alert("Order sent to kitchen 👨‍🍳☕");
-
-
+    // clear cart
     localStorage.removeItem("cart");
+    cart = [];
 
-    cart=[];
+    document.getElementById("cartCount").innerText = 0;
 
-
-    document.getElementById("cartCount").innerText=0;
-
-
-    document.getElementById("paymentPage").style.display="none";
-
-    document.getElementById("menu").style.display="block";
+    document.getElementById("paymentPage").style.display = "none";
+    document.getElementById("menu").style.display = "block";
 
 }
-
 </script>
 
 </body>
