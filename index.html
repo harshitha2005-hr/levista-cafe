@@ -1138,11 +1138,17 @@ function payCash(){
     completeOrder();
 
 }
+function completeOrder() {
 
+    // ❗ Always get latest cart from storage (important)
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function completeOrder(){
+    if(cart.length === 0){
+        alert("Cart is empty ❌");
+        return;
+    }
 
-alert("Function triggered ✅");
+    // ✅ Create order object
     let order = {
         customer: localStorage.getItem("username"),
         table: localStorage.getItem("tableNo"),
@@ -1150,7 +1156,9 @@ alert("Function triggered ✅");
         status: "Paid"
     };
 
-    // 🔥 SEND TO BACKEND
+    console.log("Sending order:", order); // 🔍 debug
+
+    // ✅ Send to backend
     fetch("https://catchy-confider-gating.ngrok-free.dev/place-order", {
         method: "POST",
         headers: {
@@ -1158,29 +1166,34 @@ alert("Function triggered ✅");
         },
         body: JSON.stringify(order)
     })
-    .then(res => res.json())
-    .then(data => {
-        alert("Order sent to kitchen 👨‍🍳☕");
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Server error");
+        }
+        return response.json();
     })
-    .catch(err => {
-        console.log(err);
+    .then(data => {
+
+        console.log("Server response:", data);
+
+        alert("✅ Order sent to kitchen!");
+
+        // ✅ Clear cart AFTER success
+        localStorage.removeItem("cart");
+        cart = [];
+
+        document.getElementById("cartCount").innerText = 0;
+
+        document.getElementById("paymentPage").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("❌ Failed to send order. Check internet or server.");
     });
-
-    // (optional: you can remove localStorage later)
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    orders.push(order);
-    localStorage.setItem("orders", JSON.stringify(orders));
-
-    // clear cart
-    localStorage.removeItem("cart");
-    cart = [];
-
-    document.getElementById("cartCount").innerText = 0;
-
-    document.getElementById("paymentPage").style.display = "none";
-    document.getElementById("menu").style.display = "block";
-
 }
+
 </script>
 
 </body>
