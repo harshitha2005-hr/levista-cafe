@@ -71,15 +71,12 @@ ${item.name} - ₹${item.price} x ${item.quantity}
 </ul>
 
 <p>Status: ${order.status || "Pending"}</p>
-
-<button onclick="markComplete(${index})" ${order.status==="Served"?"disabled":""}>
-✅ Complete
-</button>
-
-<button onclick="markServed(${index})" ${order.status==="Served"?"disabled":""}>
-🍽️ Served
-</button>
-
+<label>
+<input type="checkbox" 
+onchange="toggleStatus(${index}, this.checked)"
+${order.status==="Completed"?"checked":""}>
+Completed
+</label>
 </div>
 `;            
         });
@@ -92,7 +89,7 @@ ${item.name} - ₹${item.price} x ${item.quantity}
     });
 }
 
-function markComplete(index){
+function toggleStatus(index, isChecked){
     fetch("https://catchy-confider-gating.ngrok-free.dev/update-status", {
         method: "POST",
         headers: {
@@ -100,22 +97,9 @@ function markComplete(index){
         },
         body: JSON.stringify({
             index: index,
-            status: "Completed"
+            status: isChecked ? "Completed" : "Pending"
         })
-    }).then(() => displayOrders()); // 🔥 refresh
-}
-
-function markServed(index){
-    fetch("https://catchy-confider-gating.ngrok-free.dev/update-status", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            index: index,
-            status: "Served"
-        })
-    }).then(() => displayOrders()); // 🔥 refresh
+    }).then(() => displayOrders());
 }
 // 🔄 Auto refresh every 2 sec
 setInterval(displayOrders, 2000);
