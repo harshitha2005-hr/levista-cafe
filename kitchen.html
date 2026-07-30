@@ -55,29 +55,33 @@ function displayOrders(){
 
         data.forEach((order,index)=>{
 
-            output += `
-            <div class="order">
+	output += `
+<div class="order">
 
-            <h3>🪑 Table Number: ${order.tableNo}</h3>
+<h3>🪑 Table Number: ${order.tableNo}</h3>
+<p>Customer: ${order.username}</p>
 
-            <p>Customer: ${order.username}</p>
+<h4>Items:</h4>
+<ul>
+${order.items.map(item=>`
+<li>
+${item.name} - ₹${item.price} x ${item.quantity}
+</li>
+`).join("")}
+</ul>
 
-            <h4>Items:</h4>
+<p>Status: ${order.status || "Pending"}</p>
 
-            <ul>
+<button onclick="markComplete(${index})" ${order.status==="Served"?"disabled":""}>
+✅ Complete
+</button>
 
-            ${order.items.map(item=>`
-            <li>
-            ${item.name} - ₹${item.price} x ${item.quantity || item.qty}
-            </li>
-            `).join("")}
+<button onclick="markServed(${index})" ${order.status==="Served"?"disabled":""}>
+🍽️ Served
+</button>
 
-            </ul>
-
-            <p>🕒 ${order.time || ""}</p>
-
-            </div>
-            `;
+</div>
+`;            
         });
 
         document.getElementById("orders").innerHTML = output;
@@ -88,6 +92,31 @@ function displayOrders(){
     });
 }
 
+function markComplete(index){
+    fetch("https://catchy-confider-gating.ngrok-free.dev/update-status", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            index: index,
+            status: "Completed"
+        })
+    }).then(() => displayOrders()); // 🔥 refresh
+}
+
+function markServed(index){
+    fetch("https://catchy-confider-gating.ngrok-free.dev/update-status", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            index: index,
+            status: "Served"
+        })
+    }).then(() => displayOrders()); // 🔥 refresh
+}
 // 🔄 Auto refresh every 2 sec
 setInterval(displayOrders, 2000);
 
