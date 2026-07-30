@@ -1150,11 +1150,10 @@ function completeOrder() {
 
     // ✅ Create order object
     let order = {
-        customer: localStorage.getItem("username"),
-        table: localStorage.getItem("tableNo"),
-        items: cart,
-        status: "Paid"
-    };
+    username: localStorage.getItem("username"),
+    tableNo: localStorage.getItem("tableNo"),
+    items: cart
+};
 
     console.log("Sending order:", order); // 🔍 debug
 

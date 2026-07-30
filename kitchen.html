@@ -4,7 +4,6 @@
 <title>Levista Kitchen Dashboard</title>
 
 <style>
-
 body{
     font-family:'Segoe UI';
     background:#f8f8f8;
@@ -32,7 +31,6 @@ button{
     padding:10px 20px;
     border-radius:20px;
 }
-
 </style>
 
 </head>
@@ -43,80 +41,58 @@ button{
 
 <div id="orders"></div>
 
-
 <script>
-
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
 
 function displayOrders(){
 
-let output="";
+    fetch("https://catchy-confider-gating.ngrok-free.dev/orders")
+    .then(res => res.json())
+    .then(data => {
 
+        let output = "";
 
-orders.forEach((order,index)=>{
+        data.forEach((order,index)=>{
 
+            output += `
+            <div class="order">
 
-output += `
+            <h3>🪑 Table Number: ${order.tableNo}</h3>
 
-<div class="order">
+            <p>Customer: ${order.username}</p>
 
-<h3>🪑 Table Number: ${order.table}</h3>
+            <h4>Items:</h4>
 
-<p>Customer: ${order.customer}</p>
+            <ul>
 
-<h4>Items:</h4>
+            ${order.items.map(item=>`
+            <li>
+            ${item.name} - ₹${item.price} x ${item.quantity || item.qty}
+            </li>
+            `).join("")}
 
-<ul>
+            </ul>
 
-${order.items.map(item=>`
+            <p>🕒 ${order.time || ""}</p>
 
-<li>
-${item.name} - ₹${item.price}
-</li>
+            </div>
+            `;
+        });
 
-`).join("")}
+        document.getElementById("orders").innerHTML = output;
 
-</ul>
-
-
-<button onclick="completeOrder(${index})">
-Complete Order ✅
-</button>
-
-
-</div>
-
-`;
-
-});
-
-
-document.getElementById("orders").innerHTML=output;
-
-
+    })
+    .catch(err => {
+        console.error("Error fetching orders:", err);
+    });
 }
 
+// 🔄 Auto refresh every 2 sec
+setInterval(displayOrders, 2000);
 
-function completeOrder(index){
-
-orders.splice(index,1);
-
-localStorage.setItem("orders",JSON.stringify(orders));
-
+// first load
 displayOrders();
 
-}
-
-setInterval(() => {
-    orders = JSON.parse(localStorage.getItem("orders")) || [];
-    displayOrders();
-}, 2000); // refresh every 2 seconds
-
-
-
 </script>
-
 
 </body>
 </html>
